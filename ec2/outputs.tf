@@ -4,11 +4,11 @@ output "bastion_ip" {
 }
 
 output "server_ip" {
-  description = "Web servers public IP"
-  value = [aws_instance.app-servers.*.public_ip]
+  description = "App server public IP"
+  value = aws_instance.app-servers.public_ip
 }
 
 output "server_priv_ip" {
-  description = "Web servers private IP"
-  value = aws_instance.app-servers.*.private_ip
+  description = "App server private IP"
+  value = aws_instance.app-servers.private_ip
 }

@@ -173,10 +173,9 @@ resource "aws_instance" "bastion-server" {
 
 # Creating EC2 instances as app servers
 resource "aws_instance" "app-servers" {
-  count                       = 2
   ami                         = data.aws_ami.image2.id
   instance_type               = var.instance_type
-  subnet_id                   = var.subnets_id.public_subnets[count.index]
+  subnet_id                   = var.subnets_id.public_subnets[0]
   vpc_security_group_ids      = [aws_security_group.web-sg.id, aws_security_group.database-sg.id]
   key_name                    = aws_key_pair.admin-key.key_name
   associate_public_ip_address = true
@@ -184,7 +183,7 @@ resource "aws_instance" "app-servers" {
   user_data = file("${path.root}/userdata/app-server.sh")
 
   tags = {
-    Name = "${var.project_name}-app-server-${count.index}"
+    Name = "${var.project_name}-app-server"
   }
 }
 
