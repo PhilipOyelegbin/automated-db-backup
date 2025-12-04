@@ -1,0 +1,9 @@
+region       = "eu-west-2"
+project_name = "automated-db-backup"
+vpc_cidr     = "10.8.0.0/16"
+subnet_cidrs = [
+  "10.8.1.0/24",
+  "10.8.2.0/24",
+  "10.8.3.0/24",
+  "10.8.4.0/24"
+]
