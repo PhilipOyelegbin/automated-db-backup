@@ -124,7 +124,7 @@ tee /usr/local/bin/dbbackup_and_upload.sh > /dev/null <<-'EOF'
     # --------------------------------------------------------------
     # MongoDB dump command
     # --------------------------------------------------------------
-    echo ">>> Backing up MongoDB database..."
+    echo ">>> Backing up MongoDB database $(date)..."
     mkdir -p $BACKUP_DIR
 
     mongodump --host $MONGO_HOST --port $MONGO_PORT --db $MONGO_DB --out $BACKUP_DIR
@@ -222,7 +222,7 @@ tee /usr/local/bin/restore_latest_backup.sh > /dev/null <<-'EOF'
     # --------------------------------------------------------------
     # Find the latest backup
     # --------------------------------------------------------------
-    echo ">>> Finding the latest backup in R2 bucket $R2_BUCKET..."
+    echo ">>> Finding the latest backup in R2 bucket $R2_BUCKET $(date)..."
     LATEST_BACKUP=$(aws s3 ls "s3://$R2_BUCKET/" --endpoint-url "$R2_ENDPOINT" | sort | tail -n 1 | awk '{print $4}')
 
     if [ -z "$LATEST_BACKUP" ]; then
